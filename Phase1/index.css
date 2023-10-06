@@ -1,0 +1,39 @@
+body {
+  background-color: #dadada;
+  padding: 30px;
+}
+
+.photo {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  border: 7px solid #fff;
+  text-align: center;
+}
+
+#Upper-Container,
+#First-Upper,
+#Second-Upper {
+  list-style: none;
+  display: flex; /* to horizontally align list items. */
+  padding: 0;
+}
+
+#Upper-Container li,
+#First-Upper li,
+#Second-Upper li {
+  margin-right: 50px; /*spacing between list items */
+}
+
+@media (max-width: 800px) {
+  /* Stack list items vertically */
+  #Upper-Container {
+    flex-direction: column; /* Change to a column layout for smaller screens */
+    align-items: center; /* Center the list items vertically */
+  }
+
+  #Upper-Container li {
+    margin-right: 0; /* Remove spacing between list items */
+    margin-bottom: 10px; /* Add vertical spacing between list items */
+  }
+}
