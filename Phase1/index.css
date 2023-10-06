@@ -1,11 +1,16 @@
 body {
   background-color: #dadada;
-  padding: 30px;
+  padding: 10px;
+}
+
+p {
+  font-size: 14px;
+  border-bottom: 1px solid #cdcdcd;
 }
 
 .photo {
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
   border: 7px solid #fff;
   text-align: center;
@@ -25,6 +30,10 @@ body {
   margin-right: 50px; /*spacing between list items */
 }
 
+#Second-Upper li p {
+  margin-bottom: 20px;
+}
+
 @media (max-width: 800px) {
   /* Stack list items vertically */
   #Upper-Container {
@@ -36,4 +45,21 @@ body {
     margin-right: 0; /* Remove spacing between list items */
     margin-bottom: 10px; /* Add vertical spacing between list items */
   }
+}
+
+.boxx {
+  height: 200px;
+  width: 300px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 1%;
+  background-color: #fff;
+}
+
+.mid-boxx {
+  height: 420px;
+  width: 500px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 1%;
+  background-color: #fff;
 }
