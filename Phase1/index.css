@@ -3,7 +3,7 @@ body {
   padding: 10px;
 }
 
-p {
+#Second-Upper p {
   font-size: 14px;
   border-bottom: 1px solid #cdcdcd;
 }
@@ -62,4 +62,39 @@ p {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
   border-radius: 1%;
   background-color: #fff;
+}
+
+.boxx h3,
+h5,
+p,
+li {
+  margin: 8px;
+}
+
+.boxx p {
+  font-size: 12px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.boxx h3 {
+  padding-top: 5px;
+  margin-bottom: 15px;
+}
+
+.friends {
+  height: 33px;
+  width: 33px;
+  border-radius: 50%;
+}
+
+.LeftLower {
+  justify-content: center;
+  list-style-type: none;
+  display: flex;
+  padding-left: 0px;
+}
+
+.LeftLower li {
+  margin-right: 29px;
+  margin-left: 5px;
 }
