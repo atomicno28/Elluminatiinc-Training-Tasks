@@ -94,7 +94,9 @@ li {
   padding-left: 0px;
 }
 
-.LeftLower li {
-  margin-right: 29px;
-  margin-left: 5px;
+.middy {
+  background-color: #dadada;
+  margin-top: 8px;
+  width: 500px;
+  height: 230px;
 }
