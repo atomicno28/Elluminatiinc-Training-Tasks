@@ -1,0 +1,129 @@
+body {
+  padding-top: 3%;
+  background-color: #dadada;
+}
+
+.photo {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 7px solid #fff;
+  text-align: center;
+}
+
+.mid p {
+  margin-bottom: -4%;
+}
+
+hr {
+  opacity: 0.07;
+}
+
+#Second-Upper p {
+  font-size: 14px;
+  border-bottom: 1px solid #cdcdcd;
+}
+
+.photo {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 7px solid #fff;
+  text-align: center;
+}
+
+#Upper-Container,
+#First-Upper,
+#Second-Upper {
+  list-style: none;
+  display: flex; /* to horizontally align list items. */
+  padding: 0;
+}
+
+#Upper-Container li,
+#First-Upper li,
+#Second-Upper li {
+  margin-right: 50px; /*spacing between list items */
+}
+
+#Second-Upper li p {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 800px) {
+  /* Stack list items vertically */
+  #Upper-Container {
+    flex-direction: column; /* Change to a column layout for smaller screens */
+    align-items: center; /* Center the list items vertically */
+  }
+
+  #Upper-Container li {
+    margin-right: 0; /* Remove spacing between list items */
+    margin-bottom: 10px; /* Add vertical spacing between list items */
+  }
+}
+
+.boxx {
+  height: 200px;
+  width: 300px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 1%;
+  background-color: #fff;
+}
+
+.mid-boxx {
+  height: 420px;
+  width: 500px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 1%;
+  background-color: #fff;
+}
+
+.boxx h3,
+h5,
+p,
+li {
+  margin: 8px;
+}
+
+.boxx p {
+  font-size: 12px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.boxx h3 {
+  padding-top: 5px;
+  margin-bottom: 15px;
+}
+
+.friends {
+  height: 33px;
+  width: 33px;
+  border-radius: 50%;
+}
+
+.LeftLower {
+  justify-content: center;
+  list-style-type: none;
+  display: flex;
+  padding-left: 0px;
+}
+
+.middy {
+  background-color: #dadada;
+  margin-top: 8px;
+  width: 500px;
+  height: 230px;
+}
+
+.LeftLower li {
+  margin-right: 29px;
+  margin-left: 5px;
+}
+
+ul {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
