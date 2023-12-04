@@ -141,10 +141,10 @@ li {
   }
   .boxx,
   .mid-boxx {
-    max-width: 100%; /* Make boxes take up full width on smaller screens */
+    max-width: 100%;
   }
 
   .middy {
-    max-width: 100%; /* Make the mid-box take up full width on smaller screens */
+    max-width: 100%;
   }
 }
