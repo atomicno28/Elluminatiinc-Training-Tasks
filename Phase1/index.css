@@ -1,19 +1,19 @@
 body {
   background-color: #dadada;
-  padding: 10px;
-  font-size: 16px; /* Set a base font size for better responsiveness */
+  padding: 2.26vh;
+  font-size: 2.42vh; /* Set a base font size for better responsiveness */
 }
 
 #Second-Upper p {
-  font-size: 14px;
+  font-size: 2vh;
   border-bottom: 1px solid #cdcdcd;
 }
 
 .photo {
-  height: 100px;
-  width: 100px;
+  height: 15vh;
+  width: 15vh;
   border-radius: 50%;
-  border: 7px solid #fff;
+  border: 1vh solid #fff;
   text-align: center;
 }
 
@@ -28,11 +28,11 @@ body {
 #Upper-Container li,
 #First-Upper li,
 #Second-Upper li {
-  margin-right: 50px; /*spacing between list items */
+  margin-right: 7.5vh; /*spacing between list items */
 }
 
 #Second-Upper li p {
-  margin-bottom: 20px;
+  margin-bottom: 3.02vh;
 }
 
 @media (max-width: 800px) {
@@ -45,31 +45,30 @@ body {
 
   #Upper-Container li {
     margin-right: 0;
-    margin-bottom: 10px;
+    margin-bottom: 1.5vh;
   }
 
   .boxx,
-  .mid-boxx {
-    width: 100%; /* Make boxes take up full width on smaller screens */
-  }
-
+  .mid-boxx,
   .middy {
-    width: 100%; /* Make the mid-box take up full width on smaller screens */
+    max-width: 100%; /* Make the mid-box take up full width on smaller screens */
   }
 }
 
 .boxx {
-  height: 200px;
-  width: 300px;
-  margin-bottom: 20px;
+  height: 30.25vh;
+  width: 45.38vh;
+  max-width: fit-content;
+  margin-bottom: 3.2vh;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
   border-radius: 1%;
   background-color: #fff;
 }
 
 .mid-boxx {
-  height: 420px;
-  width: 500px;
+  height: 63.4vh;
+  width: 75.64vh;
+  max-width: fit-content;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
   border-radius: 1%;
   background-color: #fff;
@@ -79,22 +78,22 @@ body {
 h5,
 p,
 li {
-  margin: 8px;
+  margin: 1.21vh;
 }
 
 .boxx p {
-  font-size: 12px;
+  font-size: 1.8vh;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .boxx h3 {
-  padding-top: 5px;
-  margin-bottom: 15px;
+  padding-top: 0.75vh;
+  margin-bottom: 2.26vh;
 }
 
 .friends {
-  height: 33px;
-  width: 33px;
+  height: 4.99vh;
+  width: 4.99vh;
   border-radius: 50%;
 }
 
@@ -107,7 +106,45 @@ li {
 
 .middy {
   background-color: #dadada;
-  margin-top: 8px;
-  width: 500px;
-  height: 230px;
+  margin-top: 1.21vh;
+  width: 75.62vh;
+  height: 33.87vh;
+  overflow: hidden;
+}
+
+.middy img {
+  max-width: 100%;
+  max-height: 50%; /* Adjust the percentage as needed */
+}
+
+.middy p {
+  font-size: 1.81vh;
+  margin-bottom: 0;
+}
+
+.middy textarea {
+  width: 100%;
+  max-height: 30%; /* Adjust the percentage as needed */
+  box-sizing: border-box;
+}
+
+.main {
+  align-items: center;
+}
+
+@media (max-width: 1280px) {
+  #Upper-Container,
+  #First-Upper,
+  #Second-Upper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .boxx,
+  .mid-boxx {
+    max-width: 100%; /* Make boxes take up full width on smaller screens */
+  }
+
+  .middy {
+    max-width: 100%; /* Make the mid-box take up full width on smaller screens */
+  }
 }
