@@ -81,6 +81,10 @@ li {
   margin: 1.21vh;
 }
 
+.below {
+  margin: 1.21vh 0vh 0vh 0vh;
+}
+
 .boxx p {
   font-size: 1.8vh;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -147,4 +151,17 @@ li {
   .middy {
     max-width: 100%;
   }
+}
+
+.vline {
+  list-style-image: url("/img/List.png");
+}
+
+.tline {
+  list-style-image: url("/img/List2.png");
+}
+
+.vline li,
+.tline li {
+  list-style: none;
 }
