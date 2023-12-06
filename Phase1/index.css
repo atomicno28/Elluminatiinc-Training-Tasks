@@ -2,6 +2,7 @@ body {
   background-color: #dadada;
   padding: 2.26vh;
   font-size: 2.42vh; /* Set a base font size for better responsiveness */
+  overflow-x: hidden;
 }
 
 #Second-Upper p {
@@ -165,7 +166,7 @@ li {
   position: absolute;
   top: 0;
   left: -25px;
-  width: 1.1vh; /* Adjust the thickness of the line as needed */
+  width: 1.1vh;
   height: 110%;
   transform: translateY(0%);
   z-index: -1;
