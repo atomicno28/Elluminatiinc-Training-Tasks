@@ -153,6 +153,26 @@ li {
   }
 }
 
+.vline,
+.tline {
+  position: relative;
+  padding-left: 10px;
+}
+
+.vline::before,
+.tline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -25px;
+  width: 1.1vh; /* Adjust the thickness of the line as needed */
+  height: 110%;
+  transform: translateY(0%);
+  z-index: -1;
+  background-color: grey; /* Adjust the color of the line as needed */
+  opacity: 40%;
+}
+
 .vline {
   list-style-image: url("/img/List.png");
 }
