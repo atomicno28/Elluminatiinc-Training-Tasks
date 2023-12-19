@@ -2,7 +2,6 @@ body {
   background-color: #dadada;
   padding: 2.26vh;
   font-size: 2.42vh; /* Set a base font size for better responsiveness */
-  overflow-x: hidden;
   align-items: center;
 }
 
@@ -60,7 +59,7 @@ body {
 
 .boxx {
   height: 30.25vh;
-  width: 45.38vh;
+  width: 21.96vw;
   margin-bottom: 3.2vh;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
   border-radius: 1%;
@@ -69,7 +68,7 @@ body {
 
 .mid-boxx {
   height: 63.4vh;
-  max-width: 75.64vh;
+  max-width: 36.6vw;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
   border-radius: 1%;
   background-color: #fff;
@@ -100,7 +99,7 @@ li {
 
 .friends {
   height: 4.99vh;
-  width: 4.99vh;
+  width: 2.41vw;
   border-radius: 50%;
 }
 
@@ -114,7 +113,7 @@ li {
 .middy {
   background-color: #dadada;
   margin-top: 1.21vh;
-  width: 75.62vh;
+  width: 36.6vw;
   height: 33.87vh;
   overflow: hidden;
 }
@@ -151,7 +150,7 @@ li {
   position: absolute;
   top: 0;
   left: -25px;
-  width: 1.1vh;
+  width: 0.52vw;
   height: 110%;
   transform: translateY(0%);
   z-index: -1;
