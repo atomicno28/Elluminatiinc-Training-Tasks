@@ -5,7 +5,7 @@ body {
 }
 .photo {
   height: 15vh;
-  width: 15vh;
+  width: 7.32vw;
   border-radius: 50%;
   border: 1vh solid #fff;
   text-align: center;
@@ -58,7 +58,7 @@ hr {
 }
 .boxx {
   height: 30.25vh;
-  width: 45.38vh;
+  width: 21.96vw;
   max-width: fit-content;
   margin-bottom: 3.02vh;
   padding: 0 0.8vh;
@@ -68,7 +68,7 @@ hr {
 }
 .mid-boxx {
   height: 63.54vh;
-  width: 75.64vh;
+  width: 36.6vw;
   max-width: fit-content;
   margin-bottom: 5.29vh;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 0.9vh 3.2vh 0 rgba(0, 0, 0, 0.1);
