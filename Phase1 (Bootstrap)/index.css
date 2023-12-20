@@ -1,14 +1,19 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
 body {
   padding: 3%;
   background-color: #dadada;
   align-items: center;
 }
 .photo {
-  height: 15vh;
-  width: 7.32vw;
+  height: 8vw;
+  width: 7vw;
   border-radius: 50%;
   border: 1vh solid #fff;
-  text-align: center;
+  /* text-align: center; */
 }
 .mid p {
   margin-bottom: -4%;
@@ -27,6 +32,7 @@ hr {
   display: flex;
   padding: 0;
 }
+
 #Upper-Container li,
 #First-Upper li,
 #Second-Upper li {
@@ -38,42 +44,44 @@ hr {
 @media (max-width: 999px) {
   #Upper-Container {
     flex-direction: column;
+    gap: 1;
     align-items: center;
+
   }
-  #Upper-Container li {
+  /* #Upper-Container li {
     margin-right: 0;
     margin-bottom: 1.512vh;
-  }
+  } */
 
   .cent {
     text-align: center;
     align-items: center;
   }
 
-  .boxx,
+  /* .boxx,
   .mid-boxx,
   .middy {
     max-width: 100%;
-  }
+  } */
 }
 .boxx {
-  height: 30.25vh;
+  /* height: 30.25vh;
   width: 21.96vw;
   max-width: fit-content;
   margin-bottom: 3.02vh;
-  padding: 0 0.8vh;
+  padding: 0 0.8vh; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 0.9vh 3.2vh 0 rgba(0, 0, 0, 0.1);
   border-radius: 1%;
   background-color: #fff;
 }
 .mid-boxx {
-  height: 63.54vh;
+  /* height: 63.54vh;
   width: 36.6vw;
   max-width: fit-content;
-  margin-bottom: 5.29vh;
+  margin-bottom: 5.29vh; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 0.9vh 3.2vh 0 rgba(0, 0, 0, 0.1);
   border-radius: 1%;
-  background-color: #fff;
+  background-color: #fff ;
 }
 .boxx h3,
 h5,
@@ -103,9 +111,9 @@ li {
 .middy {
   background-color: #dadada;
   margin-top: 1.21vh;
-  width: 75.64vh;
-  height: 34.79vh;
-  overflow: hidden;
+  width: 100%;
+  height: fit-content;
+  overflow: none;
 }
 .LeftLower li {
   margin-right: 4.38vh;
@@ -113,8 +121,7 @@ li {
 }
 ul {
   width: 100%;
-  padding: 0;
-  margin: 0;
+ 
 }
 
 .vline,
@@ -128,7 +135,7 @@ ul {
   content: "";
   position: absolute;
   top: 0;
-  right: 50vh;
+  right: 105%;
   width: 1.1vh;
   height: 110%;
   transform: translateY(0%);
@@ -148,3 +155,4 @@ ul {
 .tline li {
   list-style: none;
 }
+
