@@ -13,12 +13,13 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <div class="container">
+    
+    <div class="container m-0">
       <div class="row">
         <div class="col-md-6">
           <div class="row">
             <div class="col-md-3">
-              <img class="photo" src="https://media.istockphoto.com/id/1146465010/photo/portrait-of-real-caucasian-man-with-happy-expression-looking-at-camera.jpg?s=612x612&w=0&k=20&c=E_5HcNeSrEae9g-Ydryy-oGaNBCdlNlSEGjnhNDnxLg=" alt="Picture">
+              <img class="photo img-fluid "  src="https://media.istockphoto.com/id/1146465010/photo/portrait-of-real-caucasian-man-with-happy-expression-looking-at-camera.jpg?s=612x612&w=0&k=20&c=E_5HcNeSrEae9g-Ydryy-oGaNBCdlNlSEGjnhNDnxLg=" alt="Picture">
             </div>
             <div class="col-md-9">
               <h1 style="color: grey; font-size: 2.7vh">Alex Smith</h1>
@@ -68,11 +69,11 @@
         </div>
       </div>
     </div>       
-
+<div class="container-fluid">
     <ul id="Upper-Container">
       <li>
-        <div class="boxx">
-          <h5 style="font-size: 2.9vh;">About Alex Smith</h5>
+        <div class="boxx m-2 p-2">
+          <h5>About Alex Smith</h5><!---font size is hard coded  due to this the overlay happens-->
           <p>
             There are many variation of passages of Lorem ipsum dolor sit amet
             consectetur adipisicing elit. uasi eius officiis labore aliquid quam
@@ -83,19 +84,13 @@
           </p>
           <ul style="list-style-type: none; display: flex; padding-left: 0px">
             <li style="margin-right: 1.7vh; margin-left: 0.75vh">
-              <img
-                src="https://www.clker.com/cliparts/4/t/n/Q/b/d/green-glossy-icon-hi.png"
-                alt="logo"
-                height="9px"
-                width="9px"
-                margin-left="1.21vh";
-              />
+             
             </li>
-            <li style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size:1.66vh; margin-left:0px">Online Status</li>
+            <p >🟢 Online Status</p>
           </ul>
         </div>
-        <div class="boxx">
-          <h5 style="font-size: 2.9vh;">Followers and Friends</h5>
+        <div class="boxx m-2 p-2">
+          <h5 >Followers and Friends</h5>
           <p>
             If you are going to use the passage of Lorem Ipsum, you need to do
             the following the measures of Portfolio design.
@@ -116,8 +111,9 @@
         </div>
       </li>
       <li>
-      <div class="mid-boxx">
-        <ul style="list-style-type:none; margin-left:0%; padding:1px; display:flex; padding-bottom:0px">
+
+      <div class=" mid-boxx   mt-2 p-2 ">
+        <ul  style="list-style-type:none;  padding:1px">
           <li>
             <ul style="list-style-type:none; padding:0%; display:flex">
               <li style="margin-left:1%; margin-right:1%"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fHww&w=1000&q=80" alt="ppic" height="55px" width="50px"></li>
@@ -169,12 +165,12 @@
     </li>
       <li>
         <ul class="img">
-          <li class="vline"> 
-            <div class="boxx">
-            <h5 style="font-size: 2.9vh;">Meeting</h5>
+          <li class="vline "> 
+            <div class="boxx  p-2">
+            <h5>Meeting</h5>
             <p>Conference on the sales of the results for the previous year, Monica please examine sales trends in marketing  and products. Below please find the current status of the sale.</p>
                       <ul  style="list-style-type:none; display:flex; padding-left:0px; margin-top:0px;">
-              <li> <h5 style="margin-top:1.21vh;font-size:2.7vh">Today</h5>
+              <li> <h5 >Today</h5>
                 <p style="margin-right:0.75vh;">Dec 24</p></li>
               <li>
                 <div style="background-color:#43b368;height:5.44vh; width : 15.12vh; margin-left:7.5vh; border-radius:0.75vh;"> 
@@ -185,7 +181,7 @@
             
           </div>
           
-          <li class="tline"><div class="boxx">
+          <li class="tline"><div class="boxx  p-2">
             <h5 style="font-size: 2.9vh">
               Send Documents to Mike
             </h5>
@@ -204,6 +200,8 @@
         </ul>
       </li>
     </ul>
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
   </body>
 </html>
