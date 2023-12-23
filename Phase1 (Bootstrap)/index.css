@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
@@ -13,7 +13,7 @@ body {
   width: 7vw;
   border-radius: 50%;
   border: 1vh solid #fff;
-  /* text-align: center; */
+  text-align: center;
 }
 .mid p {
   margin-bottom: -4%;
@@ -46,7 +46,6 @@ hr {
     flex-direction: column;
     gap: 1;
     align-items: center;
-
   }
   /* #Upper-Container li {
     margin-right: 0;
@@ -65,8 +64,8 @@ hr {
   } */
 }
 .boxx {
-  /* height: 30.25vh;
-  width: 21.96vw;
+  /* height: 30.25vh; */
+  /*width: 21.96vw;
   max-width: fit-content;
   margin-bottom: 3.02vh;
   padding: 0 0.8vh; */
@@ -75,13 +74,13 @@ hr {
   background-color: #fff;
 }
 .mid-boxx {
-  /* height: 63.54vh;
   width: 36.6vw;
+  /* /* height: 63.54vh; 
   max-width: fit-content;
   margin-bottom: 5.29vh; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 0.9vh 3.2vh 0 rgba(0, 0, 0, 0.1);
   border-radius: 1%;
-  background-color: #fff ;
+  background-color: #fff;
 }
 .boxx h3,
 h5,
@@ -121,7 +120,6 @@ li {
 }
 ul {
   width: 100%;
- 
 }
 
 .vline,
@@ -135,8 +133,8 @@ ul {
   content: "";
   position: absolute;
   top: 0;
-  right: 105%;
-  width: 1.1vh;
+  left: -25px;
+  width: 0.52vw;
   height: 110%;
   transform: translateY(0%);
   z-index: -1;
@@ -156,3 +154,11 @@ ul {
   list-style: none;
 }
 
+@media screen and (max-width: 450px) {
+  /* Styles for screens smaller than 450px */
+  .middy ul,
+  .mid-boxx ul,
+  .boxx ul {
+    flex-direction: column;
+  }
+}
