@@ -58,8 +58,8 @@ body {
 }
 
 .boxx {
+  /* width: 21.96vw; */
   /* height: 30.25vh;
-  width: 21.96vw;
   margin-bottom: 3.2vh; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
   border-radius: 2%;
@@ -174,7 +174,8 @@ li {
 @media screen and (max-width: 450px) {
   /* Styles for screens smaller than 450px */
   .middy ul,
-  .mid-boxx ul {
+  .mid-boxx ul,
+  .boxx ul {
     flex-direction: column;
   }
 }
