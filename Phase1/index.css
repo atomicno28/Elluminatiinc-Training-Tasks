@@ -12,7 +12,7 @@ body {
 
 .photo {
   height: 8vw;
-  width: 7vw;
+  width: 8vw;
   border-radius: 50%;
   border: 1vh solid #fff;
   text-align: center;
@@ -178,4 +178,15 @@ li {
   .boxx ul {
     flex-direction: column;
   }
+}
+
+.icons img {
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+}
+
+.dp {
+  height: 3rem;
+  width: 2.5rem;
 }
