@@ -11,8 +11,8 @@ body {
 }
 
 .photo {
-  height: 8vw;
-  width: 8vw;
+  height: 16.53vh;
+  width: 16.53vh;
   border-radius: 50%;
   border: 1vh solid #fff;
   text-align: center;
@@ -32,6 +32,9 @@ body {
   margin-right: 7vh; /*spacing between list items */
 }
 
+#First-Upper p {
+  width: 33.82vw;
+}
 #Second-Upper li p {
   margin-bottom: 3.02vh;
 }
@@ -68,7 +71,7 @@ body {
 
 .mid-boxx {
   /* height: 63.4vh; */
-  width: 36.6vw;
+  /* width: 36.6vw; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
   border-radius: 2%;
   background-color: #fff;
@@ -187,6 +190,33 @@ li {
 }
 
 .dp {
-  height: 3rem;
+  height: 4rem;
   width: 2.5rem;
+}
+
+.three-by-two {
+  display: flex;
+  flex-grow: 1;
+}
+
+@media (min-width: 600px) and (max-width: 704px) {
+  .three-by-two {
+    display: inline;
+  }
+}
+
+@media (max-width: 599px) {
+  .three-by-two {
+    display: inline;
+    margin-left: 16%;
+  }
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+td {
+  padding: 1vw;
+  border-bottom: 1px solid #ccc;
 }
