@@ -10,9 +10,6 @@ body {
   border: 1vh solid #fff;
   text-align: center;
 }
-hr {
-  opacity: 0.1;
-}
 
 @media (max-width: 999px) {
   .cent {
