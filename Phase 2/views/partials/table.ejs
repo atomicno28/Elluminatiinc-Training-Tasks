@@ -1,0 +1,48 @@
+<h1>User Data Table</h1>
+
+<article class="content">
+  <table style="border: 5px">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Changes</th>
+      </tr>
+    </thead>
+    <tbody id="tablebody">
+      <% data.forEach(user => { %>
+      <tr id="<%= user._id %>">
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone %></td>
+        <td>
+          <button onclick="toggleEdit('<%= user._id %>')">Edit</button>
+          <button onclick="deleteItem('<%= user._id %>')">Delete</button>
+        </td>
+      </tr>
+      <tr class="<%= user._id %>" style="display: none">
+        <td>
+          <form action="/" id="editForm">
+            <div>
+              <input type="text" placeholder="Username" />
+              <span class="usernameError"></span>
+              <input type="text" placeholder="Email" />
+              <span class="emailError"></span>
+              <input
+                type="text"
+                placeholder="Phone"
+                style="margin-right: 10px"
+              />
+              <span class="phoneError"></span>
+              <button id="<%= user._id %>" class="submitt">Submit</button>
+            </div>
+          </form>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</article>
+
+<p>This data is getting (STORE/EDIT/DELETE) in the MongoDB aswell.</p>
