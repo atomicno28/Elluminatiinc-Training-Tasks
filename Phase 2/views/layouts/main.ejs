@@ -246,91 +246,87 @@
       }
     }
 
-    var submitButtons = document.getElementsByClassName("submitt");
+    // CLIENT-SIDE JS FOR EDIT..
+    var editButton = document.getElementById("editButton");
 
-    for (var i = 0; i < submitButtons.length; i++) {
-      submitButtons[i].addEventListener("click", async function (e) {
-        e.preventDefault();
+    editButton.addEventListener("click", async function (e) {
+      e.preventDefault();
 
-        console.log("Submit button clicked"); // Debugging line
+      console.log("Edit button clicked");
 
-        // Get user data from form inputs
-        var form = e.target.closest("form");
-        var username = form.querySelector('input[placeholder="Username"]');
-        var email = form.querySelector('input[placeholder="Email"]');
-        var phone = form.querySelector('input[placeholder="Phone"]');
+      // Get user data from form inputs
+      var form = e.target.closest("form");
+      var editOption = form.querySelector("#editOption");
+      var editInput = form.querySelector("#editInput");
 
-        // Clear any existing error messages
-        form.querySelector(".usernameError").textContent = "";
-        form.querySelector(".emailError").textContent = "";
-        form.querySelector(".phoneError").textContent = "";
+      // Clear any existing error messages
+      form.querySelector("#Error").textContent = "";
 
-        // Check for empty fields
-        if (!username.value) {
-          form.querySelector(".usernameError").textContent =
-            "Username cannot be empty.";
-          return;
+      // Check for empty fields
+      if (!editInput.value) {
+        form.querySelector("#Error").textContent = "Field cannot be empty.";
+        return;
+      }
+
+      // Prepare data to be sent
+      var data = {
+        field: editOption.value,
+        value: editInput.value,
+      };
+
+      console.log("Data to be sent:", data); // Debugging line
+
+      // Get user id from the id of the edit button
+      var userId = form.dataset.userId;
+
+      // Make Fetch PATCH request
+      try {
+        const response = await fetch(`/${userId}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        console.log("Server response:", response); // Debugging line
+
+        if (response.status === 200) {
+          // Success, handle accordingly
+          const responseData = await response.json();
+          console.log("Update successful:", responseData);
+
+          // Update the table row with the new data
+          var tableRow = document.getElementById(userId);
+          tableRow.cells[0].innerText =
+            editOption.value === "username"
+              ? editInput.value
+              : tableRow.cells[0].innerText;
+          tableRow.cells[1].innerText =
+            editOption.value === "email"
+              ? editInput.value
+              : tableRow.cells[1].innerText;
+          tableRow.cells[2].innerText =
+            editOption.value === "phone"
+              ? editInput.value
+              : tableRow.cells[2].innerText;
+
+          // Hide the edit row again
+          form.closest("tr").style.display = "none";
+
+          // Clear the input fields
+          editOption.value = "";
+          editInput.value = "";
+        } else {
+          // Validation error, display error message
+          const errorData = await response.json();
+          console.error("Validation error:", errorData);
+          form.querySelector("#Error").textContent = errorData.message;
         }
-        if (!email.value) {
-          form.querySelector(".emailError").textContent =
-            "Email cannot be empty.";
-          return;
-        }
-        if (!phone.value) {
-          form.querySelector(".phoneError").textContent =
-            "Phone number cannot be empty.";
-          return;
-        }
-
-        // Prepare data to be sent
-        var data = {
-          username: username.value,
-          email: email.value,
-          phone: phone.value,
-        };
-
-        console.log("Data to be sent:", data); // Debugging line
-
-        // Get user id from the id of the submit button
-        var userId = e.target.id;
-
-        // Make Fetch PUT request
-        try {
-          const response = await fetch(`/${userId}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-          });
-
-          console.log("Server response:", response); // Debugging line
-
-          if (response.status === 200) {
-            // Success, handle accordingly
-            const responseData = await response.json();
-            console.log("Update successful:", responseData);
-
-            // Update the table row with the new data
-            var tableRow = document.getElementById(userId);
-            tableRow.cells[0].innerText = username.value;
-            tableRow.cells[1].innerText = email.value;
-            tableRow.cells[2].innerText = phone.value;
-
-            // Hide the edit row again
-            form.closest("tr").style.display = "none";
-          } else {
-            // Validation error, display error message
-            const errorData = await response.json();
-            console.error("Validation error:", errorData);
-            form.querySelector("." + errorData.field + "Error").textContent =
-              errorData.message;
-          }
-        } catch (error) {
-          console.error("An error occurred:", error);
-        }
-      });
-    }
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
+    });
 
     document.addEventListener("DOMContentLoaded", function () {
       const content = document.querySelector(".content");
