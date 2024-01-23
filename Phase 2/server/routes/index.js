@@ -19,8 +19,8 @@ router.delete("/:userId", async (req, res) => {
   }
 });
 
-// Edit Form - (PUT request)
-router.put("/:userId", async (req, res) => {
+// Edit Form - (PATCH request)
+router.patch("/:userId", async (req, res) => {
   const userId = req.params.userId;
   const data = req.body;
   try {
