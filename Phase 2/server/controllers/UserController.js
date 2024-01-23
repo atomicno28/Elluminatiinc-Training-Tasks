@@ -74,65 +74,39 @@ exports.deleteDB = async function (userId) {
 };
 
 exports.updateDB = async function (userId, data) {
-  const { username, email, phone } = data;
-
   try {
     // Check for empty fields
-    if (!username) {
+    if (!data.field || !data.value) {
       return {
         status: 400,
         error: {
-          field: "username",
-          message: "Username is required.",
+          field: "editInput",
+          message: "Both field and value are required.",
         },
       };
     }
 
-    if (!email) {
-      return {
-        status: 400,
-        error: {
-          field: "email",
-          message: "Email is required.",
-        },
-      };
+    // Prepare the update object
+    let update = {};
+    update[data.field] = data.value;
+
+    // Check for duplicate username or email
+    if (data.field === "username" || data.field === "email") {
+      const duplicate = await User.findOne(update);
+      if (duplicate && String(duplicate._id) !== String(userId)) {
+        return {
+          status: 400,
+          error: {
+            field: data.field,
+            message: `${
+              data.field.charAt(0).toUpperCase() + data.field.slice(1)
+            } is already in use.`,
+          },
+        };
+      }
     }
 
-    if (!phone) {
-      return {
-        status: 400,
-        error: {
-          field: "phone",
-          message: "Phone number is required.",
-        },
-      };
-    }
-
-    // Check for duplicate username
-    const duplicateUsername = await User.findOne({ username });
-    if (duplicateUsername && String(duplicateUsername._id) !== String(userId)) {
-      return {
-        status: 400,
-        error: {
-          field: "username",
-          message: "Username is already in use.",
-        },
-      };
-    }
-
-    // Check for duplicate email
-    const duplicateEmail = await User.findOne({ email });
-    if (duplicateEmail && String(duplicateEmail._id) !== String(userId)) {
-      return {
-        status: 400,
-        error: {
-          field: "email",
-          message: "Email is already in use.",
-        },
-      };
-    }
-
-    await User.findByIdAndUpdate(userId, data);
+    await User.findByIdAndUpdate(userId, update);
     return {
       status: 200,
       message: "User updated successfully in the database.",
