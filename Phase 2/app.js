@@ -17,6 +17,7 @@ app.use(express.json());
 app.use(expressLayouts);
 app.set("view engine", "ejs");
 app.set("layout", "./layouts/main");
+app.use(express.static("public"));
 
 // Connecting with the Database...
 try {

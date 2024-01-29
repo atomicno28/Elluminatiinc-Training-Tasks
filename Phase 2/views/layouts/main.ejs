@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your EJS Project</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/pagination.js"></script>
     <style>
       body {
         font-family: "Arial", sans-serif;
@@ -93,32 +94,6 @@
       .content {
         text-align: center;
       }
-
-      .pagination {
-        display: inline-block;
-      }
-
-      .pagination button {
-        background-color: #000;
-        color: white;
-        border: 1px solid #ddd;
-        padding: 8px 16px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 15px 3px;
-        cursor: pointer;
-        border-radius: 5px;
-      }
-
-      .pagination button.active {
-        background-color: #45a049;
-      }
-
-      .pagination button:hover:not(.active) {
-        background-color: #ddd;
-      }
     </style>
   </head>
   <body style="margin: 50px">
@@ -128,32 +103,11 @@
   </body>
 
   <script>
-    async function deleteItem(id) {
-      try {
-        const response = await fetch(`/${id}`, {
-          method: "DELETE",
-        });
-
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        // If the deletion is successful, remove the table row from the DOM
-        var trow = document.getElementById(id);
-        trow.remove();
-        var tdow = document.getElementsByClassName(id);
-        for (var i = 0; i < tdow.length; i++) {
-          tdow[i].remove();
-        }
-      } catch (error) {
-        console.error("Error deleting user:", error);
-      }
-    }
+    // POST
     document
       .getElementById("userForm")
       .addEventListener("submit", async function (event) {
         event.preventDefault(); // Prevent form submission initially
-        console.log("Form submission prevented");
 
         var username = document.getElementById("usernameInput");
         var password = document.getElementById("passwordInput");
@@ -201,186 +155,218 @@
           return;
         }
 
+        // Prepare data to be sent
+        var data = {
+          username: username.value,
+          password: password.value,
+          email: email.value,
+          phone: phone.value,
+        };
+
+        // Make Fetch POST request
         try {
           const response = await fetch("/", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-              username: username.value,
-              password: password.value,
-              email: email.value,
-              phone: phone.value,
-            }),
+            body: JSON.stringify(data),
           });
 
-          const data = await response.json();
+          const responseData = await response.json();
 
           if (response.status === 200) {
-            // Success, handle accordingly
-            window.location.href = "/"; // Redirect to the root UR
+            // Clear the input fields
+            username.value = "";
+            email.value = "";
+            password.value = "";
+            phone.value = "";
+
+            // Get the table body
+            var tableBody = document.getElementById("tablebody");
+
+            // Create a new row and cells
+            var newRow1 = document.createElement("tr");
+            newRow1.id = responseData.user._id; // Assuming responseData.user._id contains the user id
+
+            var usernameCell = document.createElement("td");
+            var emailCell = document.createElement("td");
+            var phoneCell = document.createElement("td");
+            var changesCell = document.createElement("td");
+
+            // Set the text content of the cells
+            usernameCell.textContent = responseData.user.username;
+            emailCell.textContent = responseData.user.email;
+            phoneCell.textContent = responseData.user.phone;
+
+            // Create Edit and Delete buttons
+            var editButton = document.createElement("button");
+            editButton.textContent = "Edit";
+            editButton.onclick = function () {
+              toggleEdit(responseData.user._id);
+            };
+
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.onclick = function () {
+              deleteItem(responseData.user._id);
+            };
+
+            // Append the buttons to the changes cell
+            changesCell.appendChild(editButton);
+            changesCell.appendChild(deleteButton);
+
+            // Append the cells to the new row
+            newRow1.appendChild(usernameCell);
+            newRow1.appendChild(emailCell);
+            newRow1.appendChild(phoneCell);
+            newRow1.appendChild(changesCell);
+
+            // Create a second new row for the form
+            var newRow2 = document.createElement("tr");
+            newRow2.className = responseData.user._id;
+            newRow2.style.display = "none";
+
+            var formCell = document.createElement("td");
+
+            // Create the form
+            var form = document.createElement("form");
+            form.action = "/";
+            form.className = "editForm";
+            form.dataset.userId = responseData.user._id;
+
+            // Create the form elements and append them to the form
+            var select = document.createElement("select");
+            select.id = "editOption" + responseData.index; // Use the index from the server's response
+            select.name = "editOption";
+
+            var options = ["username", "email", "phone"];
+            options.forEach(function (option) {
+              var optionElement = document.createElement("option");
+              optionElement.value = option;
+              optionElement.textContent =
+                option.charAt(0).toUpperCase() + option.slice(1);
+              select.appendChild(optionElement);
+            });
+
+            var input = document.createElement("input");
+            input.type = "text";
+            input.id = "editInput" + responseData.index; // Use the index from the server's response
+            input.name = "editInput";
+
+            var errorSpan = document.createElement("span");
+            errorSpan.id = "Error";
+
+            var br = document.createElement("br");
+
+            var submitButton = document.createElement("button");
+            submitButton.type = "submit";
+            submitButton.id = "editButton" + responseData.index; // Use the index from the server's response
+            submitButton.style.marginTop = "5px";
+            submitButton.textContent = "Update";
+
+            form.appendChild(select);
+            form.appendChild(input);
+            form.appendChild(errorSpan);
+            form.appendChild(br);
+            form.appendChild(submitButton);
+
+            // Append the form to the form cell
+            formCell.appendChild(form);
+
+            // Append the form cell to the second new row
+            newRow2.appendChild(formCell);
+
+            // Append the new rows to the table body
+            tableBody.appendChild(newRow1);
+            tableBody.appendChild(newRow2);
           } else {
-            if (data.field === "username") {
-              document.getElementById("usernameError").textContent =
-                data.message;
-            } else if (data.field === "email") {
-              document.getElementById("emailError").textContent = data.message;
-            } else if (data.field === "password") {
-              document.getElementById("passwordError").textContent =
-                data.message;
-            } else if (data.field === "phone") {
-              document.getElementById("phoneError").textContent = data.message;
-            }
+            // Handle the error here
+            console.error("An error occurred:", responseData);
           }
         } catch (error) {
           console.error("Error submitting form:", error);
         }
       });
 
-    function toggleEdit(userId) {
-      var editRows = document.getElementsByClassName(userId);
-      for (var i = 0; i < editRows.length; i++) {
-        editRows[i].style.display =
-          editRows[i].style.display === "none" ? "table-row" : "none";
-      }
-    }
-
     // CLIENT-SIDE JS FOR EDIT..
-    var editButton = document.getElementById("editButton");
+    const editForms = document.getElementsByClassName("editForm");
 
-    editButton.addEventListener("click", async function (e) {
-      e.preventDefault();
+    Array.from(editForms).forEach(function (editForm) {
+      editForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        console.log("Update Button Clicked!");
+        // Get user data from form inputs
+        const index = e.target.dataset.index;
+        const editOption = e.target.querySelector("#editOption" + index);
+        const editInput = e.target.querySelector("#editInput" + index);
 
-      console.log("Edit button clicked");
+        // Clear any existing error messages
+        e.target.querySelector("#Error").textContent = "";
 
-      // Get user data from form inputs
-      var form = e.target.closest("form");
-      var editOption = form.querySelector("#editOption");
-      var editInput = form.querySelector("#editInput");
-
-      // Clear any existing error messages
-      form.querySelector("#Error").textContent = "";
-
-      // Check for empty fields
-      if (!editInput.value) {
-        form.querySelector("#Error").textContent = "Field cannot be empty.";
-        return;
-      }
-
-      // Prepare data to be sent
-      var data = {
-        field: editOption.value,
-        value: editInput.value,
-      };
-
-      console.log("Data to be sent:", data); // Debugging line
-
-      // Get user id from the id of the edit button
-      var userId = form.dataset.userId;
-
-      // Make Fetch PATCH request
-      try {
-        const response = await fetch(`/${userId}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
-
-        console.log("Server response:", response); // Debugging line
-
-        if (response.status === 200) {
-          // Success, handle accordingly
-          const responseData = await response.json();
-          console.log("Update successful:", responseData);
-
-          // Update the table row with the new data
-          var tableRow = document.getElementById(userId);
-          tableRow.cells[0].innerText =
-            editOption.value === "username"
-              ? editInput.value
-              : tableRow.cells[0].innerText;
-          tableRow.cells[1].innerText =
-            editOption.value === "email"
-              ? editInput.value
-              : tableRow.cells[1].innerText;
-          tableRow.cells[2].innerText =
-            editOption.value === "phone"
-              ? editInput.value
-              : tableRow.cells[2].innerText;
-
-          // Hide the edit row again
-          form.closest("tr").style.display = "none";
-
-          // Clear the input fields
-          editOption.value = "";
-          editInput.value = "";
-        } else {
-          // Validation error, display error message
-          const errorData = await response.json();
-          console.error("Validation error:", errorData);
-          form.querySelector("#Error").textContent = errorData.message;
+        // Check for empty fields
+        if (!editInput.value) {
+          e.target.querySelector("#Error").textContent =
+            "Field cannot be empty.";
+          return;
         }
-      } catch (error) {
-        console.error("An error occurred:", error);
-      }
-    });
 
-    document.addEventListener("DOMContentLoaded", function () {
-      const content = document.querySelector(".content");
-      const itemsPerPage = 10;
-      let currentPage = 0;
-      const items = Array.from(content.querySelectorAll("tbody tr"));
+        // Prepare data to be sent
+        const data = {
+          field: editOption.value,
+          value: editInput.value,
+        };
 
-      function showPage(page) {
-        const startIndex = page * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-        items.forEach((item, index) => {
-          item.style.display =
-            index < startIndex ||
-            index >= endIndex ||
-            (index - startIndex) % 2 === 1
-              ? "none"
-              : "";
-        });
-        updateActiveButtonStates();
-      }
+        // Get user id from the id of the edit button
+        const userId = e.target.dataset.userId;
 
-      function createPageButtons() {
-        const totalPages = Math.ceil(items.length / itemsPerPage);
-        const paginationContainer = document.createElement("div");
-        paginationContainer.classList.add("pagination");
-
-        // Add page buttons
-        for (let i = 0; i < totalPages; i++) {
-          const pageButton = document.createElement("button");
-          pageButton.textContent = i + 1;
-          pageButton.addEventListener("click", () => {
-            currentPage = i;
-            showPage(currentPage);
+        // Make Fetch PATCH request
+        try {
+          const response = await fetch(`/${userId}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
           });
 
-          paginationContainer.appendChild(pageButton);
-        }
+          console.log(userId);
+          if (response.status === 200) {
+            // Success, handle accordingly
+            const responseData = await response.json();
+            console.log("Update successful:", responseData);
 
-        content.appendChild(paginationContainer);
-      }
+            // Update the table row with the new data
+            var tableRow = document.getElementById(userId);
+            tableRow.cells[0].innerText =
+              editOption.value === "username"
+                ? editInput.value
+                : tableRow.cells[0].innerText;
+            tableRow.cells[1].innerText =
+              editOption.value === "email"
+                ? editInput.value
+                : tableRow.cells[1].innerText;
+            tableRow.cells[2].innerText =
+              editOption.value === "phone"
+                ? editInput.value
+                : tableRow.cells[2].innerText;
 
-      function updateActiveButtonStates() {
-        const pageButtons = document.querySelectorAll(".pagination button");
-        pageButtons.forEach((button, index) => {
-          if (index === currentPage) {
-            button.classList.add("active");
+            // Hide the edit row again
+            e.target.closest("tr").style.display = "none";
+
+            // Clear the input fields
+            editOption.value = "";
+            editInput.value = "";
           } else {
-            button.classList.remove("active");
+            // Validation error, display error message
+            const errorData = await response.json();
+            console.error("Validation error:", errorData);
+            e.target.querySelector("#Error").textContent = errorData.message;
           }
-        });
-      }
-
-      createPageButtons(); //to create the page buttons initially
-      showPage(currentPage); // show the first page initially
+        } catch (error) {
+          console.error("An error occurred:", error);
+        }
+      });
     });
 
     // Code for Search

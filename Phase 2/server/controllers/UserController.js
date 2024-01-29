@@ -1,18 +1,39 @@
 const User = require("../models/User");
 
-exports.getDB = async (req, res) => {
+exports.getDB = async (req) => {
   try {
-    const data = await User.find({});
+    let page = parseInt(req.query.page);
+    if (!page || page < 1) {
+      page = 1; // default to 1 if page is not a positive integer
+    }
+    const limit = 5; // set the limit of items per page
+    const skip = (page - 1) * limit; // calculate the number of documents to skip
+
+    const data = await User.find({}).skip(skip).limit(limit); // apply pagination
     return data;
   } catch (err) {
-    res.status(500).send("Error in Fetching data from User.");
+    console.error("Error in Fetching data from User.", err);
     return null;
   }
 };
-// Homepage <- (GET)
+
+// This function handles the request and sends the response
 exports.homepage = async (req, res) => {
-  const data = await exports.getDB();
-  res.render("form", { data });
+  const data = await exports.getDB(req);
+  if (data) {
+    res.render("form", { data });
+  } else {
+    res.status(500).send("Error in Fetching data from User.");
+  }
+};
+
+exports.jsonData = async (req, res) => {
+  const data = await exports.getDB(req);
+  if (data) {
+    res.json(data);
+  } else {
+    res.status(500).send("Error in Fetching data from User.");
+  }
 };
 
 // Form -> (POST)
@@ -53,8 +74,8 @@ exports.postDB = async (req, res) => {
       });
     } else {
       const newUser = new User({ username, password, email, phone });
-      await newUser.save();
-      res.status(200).json({ success: true });
+      const savedUser = await newUser.save();
+      res.status(200).json({ success: true, user: savedUser });
     }
   } catch (err) {
     console.error(err);
@@ -126,5 +147,14 @@ exports.searchDB = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });
+  }
+};
+
+exports.getCount = async (req, res) => {
+  try {
+    const count = await User.countDocuments({});
+    res.json(count);
+  } catch (err) {
+    res.status(500).send("Error in Fetching count from User.");
   }
 };

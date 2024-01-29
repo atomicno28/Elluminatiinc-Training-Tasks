@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody id="tablebody">
-      <% data.forEach(user => { %>
+      <% data.forEach((user,index) => { %>
       <tr id="<%= user._id %>">
         <td><%= user.username %></td>
         <td><%= user.email %></td>
@@ -23,16 +23,25 @@
       </tr>
       <tr class="<%= user._id %>" style="display: none">
         <td>
-          <form action="/" id="editForm" data-user-id="<%= user._id %>">
-            <select id="editOption" name="editOption">
+          <form action="/" class="editForm" data-user-id="<%= user._id %>">
+            <select id="editOption<%= index %>" name="editOption">
               <option value="username">Username</option>
               <option value="email">Email</option>
               <option value="phone">Phone</option>
             </select>
-            <input type="text" id="editInput" name="editInput" placeholder="" />
+            <input
+              type="text"
+              id="editInput<%= index %>"
+              name="editInput"
+              placeholder=""
+            />
             <span id="Error"></span>
             <br />
-            <button id="editButton" type="submit" style="margin-top: 5px">
+            <button
+              id="editButton<%= index %>"
+              type="submit"
+              style="margin-top: 5px"
+            >
               Update
             </button>
           </form>
@@ -43,5 +52,4 @@
     </tbody>
   </table>
 </article>
-
 <p>This data is getting (STORE/EDIT/DELETE) in the MongoDB aswell.</p>

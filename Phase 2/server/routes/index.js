@@ -36,6 +36,12 @@ router.patch("/:userId", async (req, res) => {
   }
 });
 
+// SEARCH (POST)
 router.post("/search", UserController.searchDB);
+
+// GETCOUNT (GET)
+router.get("/count", UserController.getCount);
+
+router.get("/data", UserController.jsonData);
 
 module.exports = router;
