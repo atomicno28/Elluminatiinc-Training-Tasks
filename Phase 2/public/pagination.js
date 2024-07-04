@@ -97,6 +97,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
           tableBody.appendChild(editRow);
         });
       })
+
       .catch((error) => {
         console.error(
           "There has been a problem with your fetch operation:",
@@ -154,4 +155,85 @@ document.addEventListener("DOMContentLoaded", (event) => {
         editRows[i].style.display === "none" ? "table-row" : "none";
     }
   }
+
+  function handleUpdate(userId, field, index) {
+    const editOption = document.querySelector("#editOption" + index);
+    const editInput = document.querySelector("#editInput" + index);
+
+    // Clear any existing error messages
+    document.querySelector("#Error").textContent = "";
+
+    // Check for empty fields
+    if (!editInput.value) {
+      document.querySelector("#Error").textContent = "Field cannot be empty.";
+      return;
+    }
+
+    // Prepare data to be sent
+    const data = {
+      field: editOption.value,
+      value: editInput.value,
+    };
+
+    // Make Fetch PATCH request
+    fetch(`/${userId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          // Success, handle accordingly
+          response.json().then((responseData) => {
+            console.log("Update successful:", responseData);
+
+            // Update the table row with the new data
+            var tableRow = document.getElementById(userId);
+            tableRow.cells[0].innerText =
+              editOption.value === "username"
+                ? editInput.value
+                : tableRow.cells[0].innerText;
+            tableRow.cells[1].innerText =
+              editOption.value === "email"
+                ? editInput.value
+                : tableRow.cells[1].innerText;
+            tableRow.cells[2].innerText =
+              editOption.value === "phone"
+                ? editInput.value
+                : tableRow.cells[2].innerText;
+
+            // Hide the edit row again
+            document.querySelector(`tr.${userId}`).style.display = "none";
+
+            // Clear the input fields
+            editOption.value = "";
+            editInput.value = "";
+          });
+        } else {
+          // Validation error, display error message
+          response.json().then((errorData) => {
+            console.error("Validation error:", errorData);
+            document.querySelector("#Error").textContent = errorData.message;
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error);
+      });
+  }
+
+  const editForms = document.getElementsByClassName("editForm");
+
+  Array.from(editForms).forEach(function (editForm) {
+    editForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      handleUpdate(
+        e.target.dataset.userId,
+        e.target.querySelector("#editOption" + e.target.dataset.index).value,
+        e.target.dataset.index
+      );
+    });
+  });
 });

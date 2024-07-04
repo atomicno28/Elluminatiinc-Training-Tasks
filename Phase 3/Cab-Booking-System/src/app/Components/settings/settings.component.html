@@ -1,0 +1,48 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Settings</h5>
+          <form>
+            <div class="form-group">
+              <label for="duration">Duration:</label>
+              <select
+                class="form-control"
+                [(ngModel)]="selectedDuration"
+                name="duration"
+                id="duration"
+              >
+                <option value="" disabled>Select Duration (seconds)</option>
+                <option *ngFor="let duration of Duration">
+                  {{ duration }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group mt-3">
+              <label for="stop">Stop:</label>
+              <select
+                class="form-control"
+                [(ngModel)]="selectedStop"
+                name="stop"
+                id="stop"
+              >
+                <option value="" disabled>Number of stops</option>
+                <option *ngFor="let stop of Stops">{{ stop }}</option>
+              </select>
+            </div>
+            <div class="mt-4">
+              <button
+                type="button"
+                class="btn btn-primary btn-block"
+                (click)="addSetting()"
+              >
+                Set
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

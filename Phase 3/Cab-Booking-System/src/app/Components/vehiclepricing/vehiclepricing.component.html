@@ -1,0 +1,144 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-center">Vehicle Pricing Settings</h5>
+          <form>
+            <div class="form-group">
+              <label for="country">Country:</label>
+              <select
+                class="form-control"
+                [(ngModel)]="vehiclePricing.country"
+                name="country"
+                id="country"
+                (change)="onCountryChange($event.target.value)"
+              >
+                <option value="" disabled>Select a country</option>
+                <option
+                  *ngFor="let country of existingCountry"
+                  [value]="country._id"
+                >
+                  {{ country.name }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group mt-3">
+              <label for="city">City:</label>
+              <select
+                class="form-control"
+                [(ngModel)]="vehiclePricing.city"
+                name="city"
+                id="city"
+              >
+                <option value="" disabled>Select Zone</option>
+                <option *ngFor="let city of cities" [value]="city._id">
+                  {{ city.name }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group mt-3">
+              <label for="type">Type:</label>
+              <select
+                class="form-control"
+                [(ngModel)]="vehiclePricing.type"
+                name="type"
+                id="type"
+              >
+                <option value="" disabled>Select Vehicle Type</option>
+                <option *ngFor="let type of vehicleType" [value]="type._id">
+                  {{ type.vehicleTypes }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group mt-3">
+              <label for="driverProfit">Driver Profit:</label>
+              <input
+                type="number"
+                class="form-control"
+                [(ngModel)]="vehiclePricing.driverProfit"
+                name="driverProfit"
+                id="driverProfit"
+              />
+            </div>
+            <div class="form-group mt-3">
+              <label for="minFare">Min. Fare:</label>
+              <input
+                type="number"
+                class="form-control"
+                [(ngModel)]="vehiclePricing.minFare"
+                name="minFare"
+                id="minFare"
+              />
+            </div>
+            <div class="form-group mt-3">
+              <label for="distanceForBasePrice">Distance for Base Price:</label>
+              <input
+                type="number"
+                class="form-control"
+                [(ngModel)]="vehiclePricing.distanceForBasePrice"
+                name="distanceForBasePrice"
+                id="distanceForBasePrice"
+              />
+            </div>
+            <div class="form-group mt-3">
+              <label for="basePrice">Base Price:</label>
+              <input
+                type="number"
+                class="form-control"
+                [(ngModel)]="vehiclePricing.basePrice"
+                name="basePrice"
+                id="basePrice"
+              />
+            </div>
+            <div class="form-group mt-3">
+              <label for="pricePerUnitDistance">Price Per Unit Distance:</label>
+              <input
+                type="number"
+                class="form-control"
+                [(ngModel)]="vehiclePricing.pricePerUnitDistance"
+                name="pricePerUnitDistance"
+                id="pricePerUnitDistance"
+              />
+            </div>
+            <div class="form-group mt-3">
+              <label for="pricePerUnitTime">Price Per Unit Time (min):</label>
+              <input
+                type="number"
+                class="form-control"
+                [(ngModel)]="vehiclePricing.pricePerUnitTime"
+                name="pricePerUnitTime"
+                id="pricePerUnitTime"
+              />
+            </div>
+            <div class="form-group mt-3">
+              <label for="maxSpace">Max Space:</label>
+              <input
+                type="number"
+                class="form-control"
+                [(ngModel)]="vehiclePricing.maxSpace"
+                name="maxSpace"
+                id="maxSpace"
+              />
+            </div>
+            <div class="mt-4">
+              <button
+                type="button"
+                class="btn btn-primary btn-block"
+                (click)="addVehiclePricing()"
+              >
+                Add Vehicle Pricing
+              </button>
+            </div>
+            <div *ngIf="successMessage" class="alert alert-success mt-3">
+              {{ successMessage }}
+            </div>
+            <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+              {{ errorMessage }}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

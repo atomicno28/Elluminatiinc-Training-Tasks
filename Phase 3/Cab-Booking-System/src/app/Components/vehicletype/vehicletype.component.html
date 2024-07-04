@@ -1,0 +1,92 @@
+<div class="container mt-5" style="max-width: 500px">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title text-center">
+        {{ updateId ? "Update Vehicle" : "Add New Vehicle" }}
+      </h5>
+      <form>
+        <div class="form-group">
+          <label for="vehicleType" class="d-block">Vehicle Type:</label>
+          <select
+            id="vehicleType"
+            name="vehicleType"
+            class="form-control"
+            [(ngModel)]="vehicleType"
+          >
+            <option value="" disabled selected>Select a Vehicle Type</option>
+            <option value="Sedan">Sedan</option>
+            <option value="SUV">SUV (Sports Utility Vehicle)</option>
+            <option value="Minivan">Minivan</option>
+            <option value="Electric">Electric Vehicle (EV)</option>
+            <option value="Hybrid">Hybrid Vehicle</option>
+          </select>
+          <p class="text-danger" *ngIf="typeError">{{ typeError }}</p>
+        </div>
+
+        <div class="form-group">
+          <label for="name" class="d-block">Name:</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Vehicle Name..."
+            class="form-control"
+            [(ngModel)]="vehicleName"
+          />
+          <p class="text-danger" *ngIf="nameError">{{ nameError }}</p>
+        </div>
+
+        <div class="form-group">
+          <label for="icon" class="d-block">Icon:</label>
+          <input
+            type="file"
+            name="icon"
+            accept="image/*"
+            class="form-control-file"
+            (change)="onFileSelected($event)"
+          />
+          <p class="text-danger" *ngIf="iconError">{{ iconError }}</p>
+        </div>
+
+        <button
+          type="button"
+          class="btn mt-3 btn-outline-primary btn-block"
+          (click)="updateId ? updateVehicle(updateId) : addVehicle()"
+        >
+          {{ updateId ? "Update Vehicle" : "Add Vehicle" }}
+        </button>
+      </form>
+
+      <p class="text-danger mt-3" *ngIf="serverError">{{ serverError }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <h5>Uploaded Vehicles:</h5>
+  <div class="row">
+    <div class="col-md-4 mb-3" *ngFor="let vehicle of vehicles; let i = index">
+      <div class="card h-100 shadow-sm">
+        <img
+          [src]="vehicle.logo"
+          class="card-img-top"
+          alt="Vehicle Icon"
+          style="height: 200px; object-fit: contain"
+        />
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ vehicle.name }}</h5>
+          <p class="card-text">
+            <strong>Type:</strong> {{ vehicle.vehicleTypes }}
+          </p>
+          <div class="mt-auto justify-content-between">
+            <button
+              class="btn btn-outline-secondary m-1"
+              (click)="editVehicle(vehicle._id)"
+            >
+              Edit Vehicle
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

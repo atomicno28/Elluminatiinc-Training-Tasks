@@ -1,0 +1,30 @@
+.circleBullet ul {
+  list-style-type: square;
+}
+.btn-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  color: #333;
+  background-color: transparent;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.btn-toggle:hover {
+  background-color: #e9ecef;
+}
+
+.btn-toggle-nav a {
+  display: block;
+  padding: 0.25rem 1rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.btn-toggle-nav a:hover {
+  background-color: #e9ecef;
+  color: #0056b3;
+}

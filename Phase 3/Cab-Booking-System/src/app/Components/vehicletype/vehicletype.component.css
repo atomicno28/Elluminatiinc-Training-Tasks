@@ -1,0 +1,52 @@
+.container {
+  margin-top: 50px;
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-weight: bold;
+  margin-bottom: 10px; /* Reduced space between card-title and card-text */
+}
+
+.form-group label {
+  font-weight: 500;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.alert {
+  width: 100%;
+  text-align: center;
+}
+
+.card.h-100 {
+  height: 100%;
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: contain; /* Ensures the image fits inside without being cropped */
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.mt-auto {
+  margin-top: auto;
+}
+
+.mt-auto .d-flex .btn {
+  flex: 1;
+  margin-right: 0; /* No margin between buttons */
+}
+
+.mt-auto .d-flex .btn + .btn {
+  margin-left: 5px; /* Adds a small margin between the buttons */
+}

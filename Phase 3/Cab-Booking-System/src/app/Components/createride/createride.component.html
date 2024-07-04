@@ -1,0 +1,183 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Book a Ride</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number</label>
+      <input
+        type="text"
+        id="phoneNumber"
+        class="form-control"
+        [(ngModel)]="phoneNumber"
+        name="phoneNumber"
+        placeholder="Enter your phone number"
+        (blur)="checkUser()"
+      />
+      <p *ngIf="checked && !isUserFound" class="text-danger">
+        User not found with this phone number.
+      </p>
+    </div>
+
+    <div class="form-group">
+      <label>Payment Option</label>
+      <div class="form-check">
+        <input
+          type="radio"
+          id="paymentCash"
+          class="form-check-input"
+          [(ngModel)]="paymentOption"
+          name="paymentOption"
+          value="Cash"
+          [disabled]="!isUserFound"
+        />
+        <label for="paymentCash" class="form-check-label">Cash</label>
+      </div>
+      <div class="form-check">
+        <input
+          type="radio"
+          id="paymentCard"
+          class="form-check-input"
+          [(ngModel)]="paymentOption"
+          name="paymentOption"
+          value="Card"
+          [disabled]="!isUserFound"
+        />
+        <label for="paymentCard" class="form-check-label">Card</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="pickupLocationInput">Pickup Location</label>
+      <input
+        type="text"
+        id="pickupLocationInput"
+        class="form-control"
+        #pickupLocationInput
+        placeholder="Enter pickup location"
+        [disabled]="!isUserFound"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="dropOffLocationInput">Drop-off Location</label>
+      <input
+        type="text"
+        id="dropOffLocationInput"
+        class="form-control"
+        #dropOffLocationInput
+        placeholder="Enter drop-off location"
+        [disabled]="!isUserFound"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="stopLocationInput">Stop Location</label>
+      <input
+        type="text"
+        id="stopLocationInput"
+        class="form-control"
+        #stopLocationInput
+        placeholder="Enter stop location"
+        [disabled]="!isUserFound"
+      />
+      <button
+        type="button"
+        class="btn btn-secondary mt-2"
+        (click)="addStop()"
+        [disabled]="!isUserFound"
+      >
+        Add Stop
+      </button>
+      <ul class="list-group mt-2">
+        <li *ngFor="let stop of stops" class="list-group-item">
+          {{ stop }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="form-group" *ngIf="showMap">
+      <label for="serviceType">Service Type</label>
+      <div class="form-check" *ngFor="let vehicle of availableVehicles">
+        <div
+          class="d-flex align-items-center mb-2 p-2 rounded border bg-light"
+          [ngClass]="{
+            'border-primary': serviceType === vehicle._id,
+            'border-light': serviceType !== vehicle._id,
+            'bg-light': serviceType !== vehicle._id,
+            'bg-secondary bg-opacity-25': serviceType === vehicle._id
+          }"
+          (click)="selectVehicle(vehicle._id)"
+          style="cursor: pointer"
+        >
+          <label
+            [for]="'vehicle' + vehicle._id"
+            class="form-check-label w-100 m-0"
+          >
+            <div class="d-flex justify-content-between align-items-center">
+              <img
+                [src]="vehicle.logo"
+                alt="{{ vehicle.name }}"
+                style="height: 100px; width: 200px; margin-right: 10px"
+                class="img-fluid"
+              />
+              <div class="d-flex flex-column">
+                <div>
+                  <strong
+                    >{{ vehicle.name }} - {{ vehicle.vehicleTypes }}</strong
+                  >
+                </div>
+              </div>
+              <div class="ml-auto">
+                <div>
+                  <strong>Rs : {{ calculateFare(vehicle,  distance, time) | number:'1.2-2' }}</strong>
+                </div>
+              </div>
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="schedule">Schedule</label>
+      <select
+        id="schedule"
+        class="form-control"
+        [(ngModel)]="schedule"
+        name="schedule"
+        [disabled]="!isUserFound"
+      >
+        <option value="Now">Now</option>
+        <option value="Later">Later</option>
+      </select>
+    </div>
+
+    <div *ngIf="schedule === 'Later'" class="form-group">
+      <label for="scheduleDateTime">Schedule Date and Time</label>
+      <input
+        type="datetime-local"
+        id="scheduleDateTime"
+        class="form-control"
+        [(ngModel)]="scheduleDateTime"
+        name="scheduleDateTime"
+        [disabled]="!isUserFound"
+      />
+    </div>
+
+    <div *ngIf="showMap" class="mt-4">
+      <h3>Map</h3>
+      <div #mapContainer style="height: 400px"></div>
+    </div>
+
+    <p *ngIf="showMap">
+      Estimated Distance: <b>{{ distance }} </b><br />
+      Estimated Time: <b>{{ time }} </b>
+    </p>
+    <button
+      type="submit"
+      class="btn btn-primary mt-3"
+      [disabled]="!isUserFound"
+    >
+      Book Ride
+    </button>
+  </form>
+</div>

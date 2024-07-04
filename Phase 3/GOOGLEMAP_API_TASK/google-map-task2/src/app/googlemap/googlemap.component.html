@@ -1,0 +1,17 @@
+<!-- googlemap.component.html -->
+
+<h2>GOOGLE-API-TASK2</h2>
+<label for="source">Source:</label> <br />
+<input type="text" #source id="source" /> <br />
+<label for="destination">Destination:</label> <br />
+<input type="text" #destination id="destination" /> <br />
+
+<button (click)="calculateDistanceAndTime()">
+  Calculate Distance and Time
+</button>
+
+<div id="map" style="height: 400px; width: 100%"></div>
+
+<p *ngIf="distance && time">
+  Estimated Distance: {{ distance }}, Estimated Time: {{ time }}
+</p>

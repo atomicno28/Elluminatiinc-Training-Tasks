@@ -1,0 +1,143 @@
+<div class="d-flex">
+  <div
+    class="flex-shrink-0 p-3 bg-light border-end"
+    style="width: 23vw; height: 100vh; overflow-y: auto"
+  >
+    <a
+      routerLink="/"
+      class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"
+    >
+      <svg class="bi me-2" width="30" height="24">
+        <use xlink:href="#bootstrap"></use>
+      </svg>
+      <span class="fs-5 fw-semibold">Cab Booking System</span>
+    </a>
+    <p class="text-secondary">Idle Time: {{ displayTime }} mins</p>
+    <ul class="list-unstyled ps-0">
+      <li class="mb-1">
+        <button
+          class="btn btn-toggle align-items-center rounded collapsed fw-bold"
+          data-bs-toggle="collapse"
+          data-bs-target="#ride-collapse"
+          aria-expanded="false"
+        >
+          Rides
+        </button>
+        <div class="collapse" id="ride-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li>
+              <a routerLink="/create-ride" class="link-dark rounded"
+                >• Create Ride</a
+              >
+            </li>
+            <li>
+              <a routerLink="/confirmed-rides" class="link-dark rounded"
+                >• Confirmed Rides</a
+              >
+            </li>
+            <li>
+              <a routerLink="/ride-history" class="link-dark rounded"
+                >• Ride History</a
+              >
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button
+          class="btn btn-toggle align-items-center rounded collapsed fw-bold"
+          data-bs-toggle="collapse"
+          data-bs-target="#user-collapse"
+          aria-expanded="false"
+        >
+          User
+        </button>
+        <div class="collapse" id="user-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a routerLink="/user" class="link-dark rounded">• User</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button
+          class="btn btn-toggle align-items-center rounded collapsed fw-bold"
+          data-bs-toggle="collapse"
+          data-bs-target="#drivers-collapse"
+          aria-expanded="false"
+        >
+          Drivers
+        </button>
+        <div class="collapse" id="drivers-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li>
+              <a routerLink="/driver-list" class="link-dark rounded">• List</a>
+            </li>
+            <li>
+              <a routerLink="/running-request" class="link-dark rounded"
+                >• Running Request</a
+              >
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button
+          class="btn btn-toggle align-items-center rounded collapsed fw-bold"
+          data-bs-toggle="collapse"
+          data-bs-target="#pricing-collapse"
+          aria-expanded="false"
+        >
+          Pricing
+        </button>
+        <div class="collapse" id="pricing-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li>
+              <a routerLink="/country" class="link-dark rounded">• Country</a>
+            </li>
+            <li><a routerLink="/city" class="link-dark rounded">• City</a></li>
+            <li>
+              <a routerLink="/vehicle-type" class="link-dark rounded"
+                >• Vehicle Type</a
+              >
+            </li>
+            <li>
+              <a routerLink="/vehicle-pricing" class="link-dark rounded"
+                >• Vehicle Pricing</a
+              >
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="border-top my-3"></li>
+      <li class="mb-1">
+        <button
+          class="btn btn-toggle align-items-center rounded collapsed fw-bold"
+          data-bs-toggle="collapse"
+          data-bs-target="#settings-collapse"
+          aria-expanded="false"
+        >
+          Settings
+        </button>
+        <div class="collapse" id="settings-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li>
+              <a routerLink="/settings" class="link-dark rounded">• Settings</a>
+            </li>
+            <li>
+              <a
+                (click)="logout()"
+                class="link-dark rounded"
+                style="cursor: pointer"
+                >• Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div style="flex-grow: 1; overflow-y: auto; height: 100vh">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="p-3">
+  <div>
+    <label for="country" class="form-label"><b>Country:</b></label>
+    <select
+      id="country"
+      class="form-select"
+      (change)="onCountryChange($event.target.value)"
+    >
+      <option value="" disabled selected>Select a country</option>
+      <option *ngFor="let country of savedCountry" [value]="country.Name">
+        {{ country.Name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="mb-4">
+    <label for="city" class="form-label"><b>City:</b></label>
+    <input type="text" id="city" class="form-control" #zoneInput />
+  </div>
+
+  <div *ngIf="FetchedCity.length > 0">
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>City</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let city of FetchedCity; index as i">
+          <td>{{ city.name }}</td>
+          <td>
+            <button
+              class="btn btn-outline-primary btn-sm me-2"
+              (click)="editCity(city)"
+            >
+              Edit
+            </button>
+            <button
+              class="btn btn-outline-secondary btn-sm"
+              (click)="updateCity(city._id)"
+            >
+              Update
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mb-4">
+    <button class="btn btn-outline-primary" (click)="addCity()">
+      Add City
+    </button>
+  </div>
+
+  <div *ngIf="responseMessage" class="alert alert-info mt-2">
+    {{ responseMessage }}
+  </div>
+
+  <div id="map" style="height: 600px; width: 100%"></div>
+</div>

@@ -1,0 +1,33 @@
+label {
+  margin-bottom: 4px;
+}
+
+.server-message {
+  margin-top: 10px;
+}
+
+.error {
+  color: red;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 500;
+}
+
+.btn-block {
+  width: 100%;
+}
